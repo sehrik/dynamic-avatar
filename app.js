@@ -17,6 +17,6 @@ const randomImage = require('./api/routes/randomPhoto.route');
 
 app.get('/home',(req,res)=>{ res.send(`Welcome Home!`) });
 
-app.use('/',randomImage);
+app.use('/pfp',randomImage);
 
 app.listen(PORT,()=>{console.log(`Running at : ${Domain}:${PORT}`) });
