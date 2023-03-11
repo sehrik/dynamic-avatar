@@ -1,23 +1,20 @@
-const fs = require('fs');
-const path = require('path');
-const imgFolder = path.resolve(__dirname,'../../assets/images/');
-const allowedFileType = ['jpg','gif','png'];
 
-const matchExtension = (name) =>{
-    // console.log(`called at : ${new Date().toLocaleTimeString()}`);
-    const ext = name.slice(name.lastIndexOf('.')+1);
-    const isIncluded = allowedFileType.includes(ext);
-    return isIncluded;
-}
 
-const listOfFiles = fs.readdirSync(imgFolder,{withFileTypes:true}).filter( v => v.isFile && matchExtension(v.name)  );
+// const listOfFiles = [
+//     "https://images2.imgbox.com/5d/be/lbRLHRzA_o.jpg",
+//     "https://images2.imgbox.com/19/8b/ltzYHTVL_o.jpg",
+//     "https://images2.imgbox.com/14/45/VZ02uE9y_o.jpg",
+//     "https://images2.imgbox.com/a8/0b/Bs0WKJs2_o.jpg",
+//     "https://images2.imgbox.com/ab/51/KyQWTFGF_o.jpg"
+// ];
+const {list} = require('./list.json');
 
 const getRandomImage = ()=>{
+    const listOfFiles = list; 
     const guess = Math.floor(Math.random() * listOfFiles.length);
-    const randomFile = listOfFiles[guess].name;
-    return randomFile;
+    const randomImage= listOfFiles[guess];
+    return randomImage;
 }
-
 module.exports = {
     getRandomImage
 }
