@@ -13,8 +13,8 @@ const getRandomImage = async ()=>{
 }
 
 
-const randomImageRequest = (req,res)=>{
-    const img = getRandomImage();
+const randomImageRequest =async (req,res)=>{
+    const img =await getRandomImage();
     if(img){
         // console.log(img);
         const {url }= img;
