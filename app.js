@@ -1,11 +1,8 @@
-const { connectDb } = require('./api/db/db');
-
 
 console.clear()
 console.log(`Last Run : ${new Date().toLocaleTimeString()}`);
 /////////
 require('dotenv').config();
-connectDb();
 
 const Express = require('express');
 const cookieParser = require('cookie-parser');

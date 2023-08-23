@@ -1,8 +1,5 @@
 const {Router} = require('express');
 const indexRouter = Router();
-
-
-const manageRouter = require('./manage.photo.route');
 const randomRouter = require('./randomPhoto.route');
 
 const { checkAuth } = require('../middleware/auth.middleware');
@@ -26,7 +23,5 @@ indexRouter.get('/',(req,res)=>{
 
 //protected routes
 indexRouter.get('/dashboard',dashboardCtrl);
-
-indexRouter.use('/manage',manageRouter);
 
 module.exports = indexRouter;

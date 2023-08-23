@@ -1,7 +1,4 @@
-const { getAllLinks } = require("../db/links.query");
-
-
-
+const { getAllLinks } = require("../db/links");
 
 const dashboardCtrl = async (req,res)=>{
     // console.log(req.cookies);
@@ -10,12 +7,12 @@ const dashboardCtrl = async (req,res)=>{
 
     // console.log(baseUrl);
     // console.log(req.ip,'=',req.hostname)
-    const result = await getAllLinks();
+    const result = getAllLinks;
     // console.log('links',result);
     const lastUpdate = Date.now();
     const _D = new Date(lastUpdate);
     const timeStr = _D.toLocaleDateString()+ " - " + _D.toLocaleTimeString();
-    const urlList = result;
+    const urlList = result.map((v,i)=> ({id : i, url : v}));
     return  res.render('dashboard',
     {
         urlList : urlList,

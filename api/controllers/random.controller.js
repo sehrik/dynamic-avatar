@@ -1,11 +1,10 @@
-const { getAllLinks } = require("../db/links.query");
-
+const { getAllLinks } = require("../db/links");
 
 
 const getRandomImage = async ()=>{
     // const listOfFiles = list; 
 
-    const links = await getAllLinks();
+    const links = getAllLinks;
     
     const guess = Math.floor(Math.random() * links.length);
     const randomImage= links[guess];
@@ -17,7 +16,7 @@ const randomImageRequest = (req,res)=>{
     const img = getRandomImage();
     if(img){
         // console.log(img);
-        const {url }= img;
+        const url = img;
         // return res.json(img);
         return res.redirect(url);
     }
