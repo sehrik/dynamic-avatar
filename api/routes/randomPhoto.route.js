@@ -1,9 +1,9 @@
 const express = require('express');
-const { getRandomImage } = require('../controllers/listImages.controller');
-const router = express.Router();
-router.get('/',(req,res)=>{
-    const result = getRandomImage();
-    res.redirect(result);
-})
+const {  randomImageRequest } = require('../controllers/random.controller');
 
-module.exports = router;
+const randomPhotoRouter = express.Router();
+
+
+randomPhotoRouter.get('/',randomImageRequest)
+
+module.exports = randomPhotoRouter;

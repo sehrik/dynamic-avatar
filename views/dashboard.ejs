@@ -1,0 +1,54 @@
+<%- include('./header.ejs'); %>
+
+<header>
+    <div class="header">
+        <h2>Dynamic Avatar Dashboard </h2>
+    </div>
+    
+    <div class="stats">
+        <span>Last Updated : <%= lastUpdate %> </span>
+        <span>Total Avatar Url : <%= urlList.length %> </span>
+        <span id="random-url">Random Avatar URL: 
+            <code>
+                <%= endpoint %>
+            </code>
+        </span>
+    </div>
+
+</header>
+
+<main id="dashboard">
+    
+    <div id="add-form">
+        <form action="/manage" method="post">
+            <div class="mb-2 add-form" >
+              <input type="text" class="form-control" id="exampleInputEmail1" name ='url'>
+            </div>
+            <button type="submit" class="btn btn-primary">Add New</button>
+          </form>
+    </div>
+
+    <div class="urlImg-container">
+        <% for( let index = 0; index < urlList.length; index++ ) { %>
+
+        <div class="card my-card">
+            <img
+                src="<%= urlList[index].url %>"
+                class="card-img-top"
+                alt="nothing image"
+            />
+            <div class="card-body my-card-body">
+                <a href="/manage/delete/<%= urlList[index].id %>" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+
+    <% if (urlList.length==0) { %>
+        <%- include('./empty.ejs') %>
+    <% } %>
+
+</main>
+
+<%- include('./footer.ejs'); %>
