@@ -1,47 +1,32 @@
+const { getAllLinks,addLink,deleteLink } = require("../db/links.query");
 
-const { store } = require("../db/store");
-const { syncWithStore } = require("../services/store.service");
-
-
-
-
-const addUrl = (req,res)=>{
+const addUrl = async (req,res)=>{
 
     const {url} = req.body;
 
-    console.log(req.body)
+    // console.log(req.body)
 
-    console.log(url)
-
-    
+    // console.log(url)
     if(!url){
         return res.sendStatus(400);    
     }
     if(!url.startsWith("http")){
         return res.sendStatus(400);
     }
+    const id = Math.random().toString(36).slice(2);
 
-    store.addAvatar(url);
-    syncWithStore(process.env.dbpath,store);
+    await addLink(id,url);
 
     return res.redirect('/dashboard');
-
 };
-const deleteUrl = (req,res)=>{
+const deleteUrl = async (req,res)=>{
 
     const {id : urlId} = req.params;
     if(!urlId){
         return res.sendStatus(400);    
     }
-
-  const result =  store.deleteAvatar(urlId);
-  if(result){
-
-      syncWithStore(process.env.dbpath,store);
-  }
-
+  const result =  await deleteLink(urlId);
     return res.redirect('/dashboard');
-
 };
 
 module.exports = {

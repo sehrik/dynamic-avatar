@@ -1,16 +1,21 @@
-const { store } = require("../db/store");
-const { getAllUrl } = require("./manage.controller");
+const { getAllLinks } = require("../db/links.query");
 
 
-const dashboardCtrl = (req,res)=>{
+
+
+const dashboardCtrl = async (req,res)=>{
     // console.log(req.cookies);
 
-    const baseUrl = `${req.hostname}:${req.app.get('my_port')}/random`
+    const baseUrl = `${req.hostname}:${req.app.get('my_port')}/random`;
+
+    // console.log(baseUrl);
     // console.log(req.ip,'=',req.hostname)
-    const {lastUpdate} = store.getStore;
+    const result = await getAllLinks();
+    // console.log('links',result);
+    const lastUpdate = Date.now();
     const _D = new Date(lastUpdate);
     const timeStr = _D.toLocaleDateString()+ " - " + _D.toLocaleTimeString();
-    const urlList = store.avatarList;
+    const urlList = result;
     return  res.render('dashboard',
     {
         urlList : urlList,
