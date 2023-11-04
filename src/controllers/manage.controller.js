@@ -1,12 +1,11 @@
-const { getAllLinks,addLink,deleteLink } = require("../db/links.query");
+// const { getAllLinks,addLink,deleteLink } = require("../db/links.query");
+import {addLink,deleteLink} from '../db/links.query.js';
 
-const addUrl = async (req,res)=>{
+
+export const addUrl = async (req,res)=>{
 
     const {url} = req.body;
-
     // console.log(req.body)
-
-    // console.log(url)
     if(!url){
         return res.sendStatus(400);    
     }
@@ -19,7 +18,7 @@ const addUrl = async (req,res)=>{
 
     return res.redirect('/dashboard');
 };
-const deleteUrl = async (req,res)=>{
+export const deleteUrl = async (req,res)=>{
 
     const {id : urlId} = req.params;
     if(!urlId){
@@ -28,8 +27,3 @@ const deleteUrl = async (req,res)=>{
   const result =  await deleteLink(urlId);
     return res.redirect('/dashboard');
 };
-
-module.exports = {
-    addUrl,
-    deleteUrl
-}

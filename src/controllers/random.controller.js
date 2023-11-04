@@ -1,8 +1,6 @@
-const { getAllLinks } = require("../db/links.query");
+import { getAllLinks } from "../db/links.query.js";
 
-
-
-const getRandomImage = async ()=>{
+export const getRandomImage = async ()=>{
     // const listOfFiles = list; 
 
     const links = await getAllLinks();
@@ -13,7 +11,7 @@ const getRandomImage = async ()=>{
 }
 
 
-const randomImageRequest =async (req,res)=>{
+export const randomImageRequest =async (req,res)=>{
     const img =await getRandomImage();
     if(img){
         // console.log(img);
@@ -23,9 +21,4 @@ const randomImageRequest =async (req,res)=>{
     }
 
     return res.redirect(`https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png`);
-}
-
-module.exports = {
-    getRandomImage,
-    randomImageRequest
 }

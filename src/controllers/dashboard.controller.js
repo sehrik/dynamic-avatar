@@ -1,17 +1,10 @@
-const { getAllLinks } = require("../db/links.query");
+import { getAllLinks } from "../db/links.query.js";
 
-
-
-
-const dashboardCtrl = async (req,res)=>{
-    // console.log(req.cookies);
-
+export const dashboardCtrl = async (req,res)=>{
     const baseUrl = `${req.hostname}:${req.app.get('my_port')}/random`;
 
-    // console.log(baseUrl);
-    // console.log(req.ip,'=',req.hostname)
     const result = await getAllLinks();
-    // console.log('links',result);
+
     const lastUpdate = Date.now();
     const _D = new Date(lastUpdate);
     const timeStr = _D.toLocaleDateString()+ " - " + _D.toLocaleTimeString();
@@ -25,6 +18,3 @@ const dashboardCtrl = async (req,res)=>{
  };
 
 
- module.exports = {
-    dashboardCtrl
- }

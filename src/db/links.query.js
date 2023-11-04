@@ -1,7 +1,7 @@
-const { linkModel } = require("./links.model");
+import {linkModel} from './links.model.js'
 
 
-const getAllLinks = async ()=>{
+export const getAllLinks = async ()=>{
 
     try {
         const resutl = await linkModel.find({}).exec();
@@ -14,9 +14,7 @@ const getAllLinks = async ()=>{
     }
 };
 
-const addLink = async (id,url)=>{
-
-
+export const addLink = async (id,url)=>{
 
     try {
         const result = await linkModel.create({
@@ -30,7 +28,7 @@ const addLink = async (id,url)=>{
     }
 }
 
-const deleteLink = async (id)=>{
+export const deleteLink = async (id)=>{
     try {
         const res= await linkModel.findOneAndDelete({id : id}).exec();
         return true;
@@ -40,8 +38,3 @@ const deleteLink = async (id)=>{
     }
 };
 
-module.exports = {
-    getAllLinks,
-    addLink,
-    deleteLink
-}

@@ -1,4 +1,4 @@
-const handleLogin = (req, res) => {
+export const handleLogin = (req, res) => {
 
     const PASSWORD = process.env.PASSWORD;
     const USERNAME = process.env.DYN_USERNAME;
@@ -13,7 +13,3 @@ const handleLogin = (req, res) => {
 
     return res.redirect("/");
 };
-
-module.exports = {
-    handleLogin
-}

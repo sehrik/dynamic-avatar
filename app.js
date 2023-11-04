@@ -1,26 +1,30 @@
-const { connectDb } = require('./api/db/db');
-
 
 console.clear()
 console.log(`Last Run : ${new Date().toLocaleTimeString()}`);
 /////////
-require('dotenv').config();
+import dotenv from 'dotenv';
+import { connectDb } from './src/db/db.js';
+dotenv.config({
+    path:'./.env'
+});
 connectDb();
+import Express from 'express'
 
-const Express = require('express');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser')
-const cors = require('cors');
-const app = Express();
-const path = require('path');
-const indexRouter = require('./api/routes/index.router.js');
+import cors from 'cors'
+import cookieParser from 'cookie-parser';
+import path from 'node:path';
+import { indexRouter } from './src/routes/index.router.js';
+import { fileURLToPath } from 'node:url';
+const __fileName = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__fileName);
 
 const PORT =  (process.env.PORT ? process.env.PORT :  3000 );
 
-const staticFiles = path.join(__dirname,'public');
-const viewPath = path.join(__dirname,'views');
+const staticFiles = path.join(__dirname,'src','public');
+const viewPath = path.join(__dirname,'src','views');
 
 
+const app = Express();
 app.set('view engine', 'ejs');
 app.set('views',viewPath);
 app.set('my_port',PORT);

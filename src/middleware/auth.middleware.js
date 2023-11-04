@@ -1,4 +1,4 @@
-const checkAuth = (req, res, next) => {
+export const checkAuth = (req, res, next) => {
     // console.log('body=',req.body);
     const PASSWORD = process.env.PASSWORD;
     const USERNAME = process.env.DYN_USERNAME;
@@ -24,8 +24,4 @@ const checkAuth = (req, res, next) => {
 
     req.isAuth = true;
     return next();
-};
-
-module.exports = {
-    checkAuth,
 };
